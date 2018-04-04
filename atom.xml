@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosevil1874.github.io/"/>
-  <updated>2018-01-04T13:39:35.555Z</updated>
+  <updated>2018-04-04T11:23:26.672Z</updated>
   <id>https://rosevil1874.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Python小记</title>
+    <link href="https://rosevil1874.github.io/2018/04/04/Python%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://rosevil1874.github.io/2018/04/04/Python小记/</id>
+    <published>2018-04-04T10:48:36.000Z</published>
+    <updated>2018-04-04T11:23:26.672Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote class="blockquote-center">沉迷尤克里里电影和美丽花衣裳的程序媛要开始LeetCode了，在Java和Python之间义无反顾选择了Python，毕竟要竭尽全力减轻负担啊哈哈。快速自学记录一下语法特别之处吧╮(─▽─)╭</blockquote><a id="more"></a><h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><p>ASCII（1个字节）：美国人儿那套；<br>Unicode（2个字节）：把所有语言都统一到一套编码里，这样就不会再有乱码问题了（浪费空间）；<br>UTF-8（可变长编码）：<br>UTF-8编码把一个Unicode字符根据不同的数字大小编码成1-6个字节，常用的英文字母被编码成1个字节，汉字通常是3个字节，只有很生僻的字符才会被编码成4-6个字节。如果你要传输的文本包含大量英文字符，用UTF-8编码就能节省空间。<br>UTF-8编码有一个额外的好处，就是ASCII编码实际上可以被看成是UTF-8编码的一部分，所以，大量只支持ASCII编码的历史遗留软件可以在UTF-8编码下继续工作。</p><h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>普通str，以Unicode表示；<br>前缀’r’，防止转义；<br>前缀’b’，bytes类型，一个字节；<br>encode()：如果要在网络上传输，或者保存到磁盘上，就需要把str变为以字节为单位的bytes；<br>decode()：如果我们从网络或磁盘上读取了字节流，那么读到的数据就是bytes，需把bytes变为str；<br>.decode(‘utf-8’, errors=’ignore’)：bytes中包含无法解码的字节会报错，这样忽略掉错误；</p><h2 id="dict和set"><a href="#dict和set" class="headerlink" title="dict和set"></a>dict和set</h2><p>dict和list<br>和list比较，dict有以下几个特点：</p><ol><li>查找和插入的速度极快，不会随着key的增加而变慢；</li><li>需要占用大量的内存，内存浪费多。<br>而list相反：</li><li>查找和插入的时间随着元素的增加而增加；</li><li>占用空间小，浪费内存很少。<br>所以，dict是用空间来换取时间的一种方法。</li></ol><p>set和dict</p><ol><li>set和dict唯一区别仅在于没有存储对应的value，但是，set的原理和dict一样，所以，同样不可以放入可变对象，因为无法判断两个可变对象是否相等，也就无法保证set内部“不会有重复元素”。</li><li>相同点：key必须是不可变对象。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote class=&quot;blockquote-center&quot;&gt;沉迷尤克里里电影和美丽花衣裳的程序媛要开始LeetCode了，在Java和Python之间义无反顾选择了Python，毕竟要竭尽全力减轻负担啊哈哈。快速自学记录一下语法特别之处吧╮(─▽─)╭&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Python" scheme="https://rosevil1874.github.io/categories/Python/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Vue slot实例</title>
@@ -67,7 +87,7 @@
     <link href="https://rosevil1874.github.io/2017/12/30/Goodbye-2017/"/>
     <id>https://rosevil1874.github.io/2017/12/30/Goodbye-2017/</id>
     <published>2017-12-30T08:41:20.000Z</published>
-    <updated>2017-12-31T03:37:48.394Z</updated>
+    <updated>2018-01-04T13:48:11.519Z</updated>
     
     <content type="html"><![CDATA[<blockquote class="blockquote-center">把今年的愿望，再许一遍。</blockquote><h2 id="2017"><a href="#2017" class="headerlink" title="2017"></a>2017</h2><p>2017倒数第二天，我这一年都做了些什么。</p><a id="more"></a><h3 id="大三下"><a href="#大三下" class="headerlink" title="大三下"></a>大三下</h3><p>03-21  加入KEEP，开始一点点运动 :muscle:<br>06-18  骑行10公里，参加毕业音乐会<br>06-24  广州参观实习，火车通宵、各种夜宵、小蛮腰<br>—–  上半年可以说是一片空白了 :broken_heart:</p><h3 id="大四上"><a href="#大四上" class="headerlink" title="大四上"></a>大四上</h3><p>08-15  陪汪大铮在长沙晃哒了一周，炒鸡开心，也比较遗憾自己有些心不在焉(智障障 :zzz: )<br>08-22  准备找工作每天投简历参加笔试，后来准备保研复试<br>—–  南大复试，Java机试0AC，一个人吃了一笼鸡汁灌汤包<br>09-23  复旦复试，和燕子去了上海，鲜肉月饼啧啧啧<br>10-01  开始练字<br>10-02  使用WordPress搭建了第一个自己的博客，立即闲置 :joy:<br>10-29  去46LiveHouse看了谢春花小姐姐的演出<br>11-04  开始家教，给师大大二的小男生上算法，C++，计组<br>11-18  开始“融城计划”，和兰东旭小哥哥一起去给小朋友上音乐课<br>12-23  燕子考研，不用再去接她回宿舍啦<br>12-30  使用GitPage+Hexo搭建了自己的第二个博客，希望能用起来<br>—–  退了天鹅湖的票买了一把小U，开始学习吧<br>—–  粗略学习了python，使用其进行中文微博情感分析</p><img src="/2017/12/30/Goodbye-2017/happiness.jpg"><h2 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h2><p>找不到我的2017新年愿望了，估计一项也没有实现，现在的2018新年愿望很有可能和去年的是一样的(ー_ー)!!</p><ol><li>改变自己最大的心理问题，不要害怕被人看到自己的努力，别人看不到你努力自己同样会努力，你这样会被那些开心积极乐观奋斗的人超越得远远的。不管学习还是生活方面的。</li><li>运动 :point_right: 你的身体不允许懒惰</li><li>饮食 :point_right: 甜食少一点，多巴胺多一点</li><li>作息 :point_right: 早起办到了，还要早睡</li><li>小U  :point_right: 一年很长，能学会的</li><li>练字 :point_right: 慢慢来吧，坚持</li><li>阅读 :point_right: 跳出舒适区</li><li>英语 :point_right: 单词，歌曲，阅读，发声</li><li>生活 :sunny: 你和你的家人朋友才是最重要的</li></ol><div class="note default"><p>你有那么多的收藏夹叫做better me，一定可以做到的呀，慢慢来。 </p></div><img src="/2017/12/30/Goodbye-2017/love.gif" title="爱你哟❤">]]></content>
     
