@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['有效的括号']]></title>
+    <url>%2F2018%2F04%2F05%2F%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7-1%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA['有效的括号']]></title>
+    <url>%2F2018%2F04%2F05%2F%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7%2F</url>
+    <content type="text"><![CDATA[数据结构经典题，用栈完美解决。12345678910111213141516171819202122232425262728class Solution: def isValid(self, s): &quot;&quot;&quot; :type s: str :rtype: bool &quot;&quot;&quot; if s is None: return false x = [&apos;[&apos;,&apos;(&apos;,&apos;&#123;&apos;] y = [&quot;]&quot;,&quot;)&quot;,&quot;&#125;&quot;] z = [&quot;()&quot;,&quot;[]&quot;,&quot;&#123;&#125;&quot;] stack = [] for char in s: if char in x: stack.append(char) elif char in y: if len(stack) == 0: return False else: temp = stack.pop(-1) + char if temp not in z: return False if len(stack) != 0: return False return True]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA['合并两个有序链表']]></title>
     <url>%2F2018%2F04%2F05%2F%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[老老实实翻开数据结构合并吧 判断链表是否为空，若链表为空则返回空链表； 创建一个新的空链表； 创建一个指针pre指向新链表头； 依次判断两个旧链表头结点val大小，pre指向小的那个，且将这个“小链表”的头指针删去； 其中一个旧链表全部接到新链表后，将另一个链表剩下的部分接到新链表。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): &quot;&quot;&quot; :type l1: ListNode :type l2: ListNode :rtype: ListNode &quot;&quot;&quot; if l1 is None and is None: return None else if l1 is None return l2 else if l2 is None: return l1 new_list = ListNode(0) pre = new_list while l1 is not None and l2 is not None: if l1.val &lt; l2.val: pre.next = l1 l1 = l1.next else pre.next = l2 l2 = l2.next pre = pre.next if l1 is not None: pre.next = l1 else: pre.next = l2 return new_list.next 递归12345678910111213class Solution: def mergeTwoLists(self, l1, l2): if not l1: return l2 elif not l2: return l1 else: if l1.val &lt; l2.val: l1.next = self.mergeTwoLists(l1.next, l2) return l1 else: l2.next = self.mergeTwoLists(l1, l2.next) return l2]]></content>
