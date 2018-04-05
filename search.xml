@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['合并两个有序链表']]></title>
+    <url>%2F2018%2F04%2F05%2F%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[老老实实翻开数据结构合并吧 判断链表是否为空，若链表为空则返回空链表； 创建一个新的空链表； 创建一个指针pre指向新链表头； 依次判断两个旧链表头结点val大小，pre指向小的那个，且将这个“小链表”的头指针删去； 其中一个旧链表全部接到新链表后，将另一个链表剩下的部分接到新链表。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): &quot;&quot;&quot; :type l1: ListNode :type l2: ListNode :rtype: ListNode &quot;&quot;&quot; if l1 is None and is None: return None else if l1 is None return l2 else if l2 is None: return l1 new_list = ListNode(0) pre = new_list while l1 is not None and l2 is not None: if l1.val &lt; l2.val: pre.next = l1 l1 = l1.next else pre.next = l2 l2 = l2.next pre = pre.next if l1 is not None: pre.next = l1 else: pre.next = l2 return new_list.next 递归12345678910111213class Solution: def mergeTwoLists(self, l1, l2): if not l1: return l2 elif not l2: return l1 else: if l1.val &lt; l2.val: l1.next = self.mergeTwoLists(l1.next, l2) return l1 else: l2.next = self.mergeTwoLists(l1, l2.next) return l2]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[电话号码的字母组合']]></title>
     <url>%2F2018%2F04%2F05%2F%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88%2F</url>
     <content type="text"><![CDATA[第一反应是全排列，但是怎么实现没有想到，久了没有刷过oj已经脑子生锈了。从别人那里借鉴的【深搜 + 递归】1234567891011121314151617181920212223242526class Solution: def letterCombinations(self, digits): &quot;&quot;&quot; :type digits: str :rtype: List[str] &quot;&quot;&quot; begin = 0 #当前需要处理的digits的位置 path = &apos;&apos; #深搜路径 res = [] #返回结果 phone = &#123;&apos;2&apos;:&apos;abc&apos;,&apos;3&apos;:&apos;def&apos;,&apos;4&apos;:&apos;ghi&apos;,&apos;5&apos;:&apos;jkl&apos;,&apos;6&apos;:&apos;mno&apos;,&apos;7&apos;:&apos;pqrs&apos;,&apos;8&apos;:&apos;tuv&apos;,&apos;9&apos;:&apos;wxyz&apos;&#125; self.deepSearch(digits, begin, path, res, phone) return res def deepSearch(self, digits, begin, path, res, phone): # 深搜触底，回溯 if len(path) == len(digits) : res.append(path) return # 遍历当前数字代表的所有字母 for char in phone[digits[begin]]: path += char # 从下一位开始到最后一位的组合情况 self.deepSearch(digits, begin + 1, path, res, phone) path = path[:-1]]]></content>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosevil1874.github.io/"/>
-  <updated>2018-04-05T09:38:21.144Z</updated>
+  <updated>2018-04-05T10:44:23.806Z</updated>
   <id>https://rosevil1874.github.io/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>&#39;合并两个有序链表&#39;</title>
+    <link href="https://rosevil1874.github.io/2018/04/05/%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8/"/>
+    <id>https://rosevil1874.github.io/2018/04/05/合并两个有序链表/</id>
+    <published>2018-04-05T10:29:57.000Z</published>
+    <updated>2018-04-05T10:44:23.806Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2018/04/05/合并两个有序链表/AC.png"><a id="more"></a><img src="/2018/04/05/合并两个有序链表/21.png"><h2 id="老老实实翻开数据结构合并吧"><a href="#老老实实翻开数据结构合并吧" class="headerlink" title="老老实实翻开数据结构合并吧"></a>老老实实翻开数据结构合并吧</h2><ol><li>判断链表是否为空，若链表为空则返回空链表；</li><li>创建一个新的空链表；</li><li>创建一个指针pre指向新链表头；</li><li>依次判断两个旧链表头结点val大小，pre指向小的那个，且将这个“小链表”的头指针删去；</li><li>其中一个旧链表全部接到新链表后，将另一个链表剩下的部分接到新链表。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"># Definition for singly-linked list.</span><br><span class="line"># class ListNode:</span><br><span class="line">#     def __init__(self, x):</span><br><span class="line">#         self.val = x</span><br><span class="line">#         self.next = None</span><br><span class="line"></span><br><span class="line">class Solution:</span><br><span class="line">    def mergeTwoLists(self, l1, l2):</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        :type l1: ListNode</span><br><span class="line">        :type l2: ListNode</span><br><span class="line">        :rtype: ListNode</span><br><span class="line">        &quot;&quot;&quot;</span><br><span class="line">        if l1 is None and is None:</span><br><span class="line">        return None</span><br><span class="line">        else if l1 is None</span><br><span class="line">        return l2</span><br><span class="line">        else if l2 is None:</span><br><span class="line">        return l1</span><br><span class="line"></span><br><span class="line">        new_list = ListNode(0)</span><br><span class="line">        pre = new_list</span><br><span class="line">        while l1 is not None and l2 is not None:</span><br><span class="line">        if l1.val &lt; l2.val:</span><br><span class="line">        pre.next = l1</span><br><span class="line">        l1 = l1.next</span><br><span class="line">        else</span><br><span class="line">        pre.next = l2</span><br><span class="line">        l2 = l2.next</span><br><span class="line">        pre = pre.next</span><br><span class="line"></span><br><span class="line">        if l1 is not None:</span><br><span class="line">        pre.next = l1</span><br><span class="line">        else:</span><br><span class="line">        pre.next = l2</span><br><span class="line"></span><br><span class="line">        return new_list.next</span><br></pre></td></tr></table></figure></li></ol><h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution:</span><br><span class="line">    def mergeTwoLists(self, l1, l2):</span><br><span class="line">    if not l1:</span><br><span class="line">    return l2</span><br><span class="line">    elif not l2:</span><br><span class="line">    return l1</span><br><span class="line">    else:</span><br><span class="line">    if l1.val &lt; l2.val:</span><br><span class="line">    l1.next = self.mergeTwoLists(l1.next, l2)</span><br><span class="line">    return l1</span><br><span class="line">    else:</span><br><span class="line">    l2.next = self.mergeTwoLists(l1, l2.next)</span><br><span class="line">    return l2</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2018/04/05/合并两个有序链表/AC.png&quot;&gt;
+    
+    </summary>
+    
+    
+      <category term="LeetCode" scheme="https://rosevil1874.github.io/tags/LeetCode/"/>
+    
+  </entry>
   
   <entry>
     <title>电话号码的字母组合&#39;</title>
