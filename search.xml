@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[电话号码的字母组合']]></title>
+    <url>%2F2018%2F04%2F05%2F%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88%2F</url>
+    <content type="text"><![CDATA[第一反应是全排列，但是怎么实现没有想到，久了没有刷过oj已经脑子生锈了。从别人那里借鉴的【深搜 + 递归】1234567891011121314151617181920212223242526class Solution: def letterCombinations(self, digits): &quot;&quot;&quot; :type digits: str :rtype: List[str] &quot;&quot;&quot; begin = 0 #当前需要处理的digits的位置 path = &apos;&apos; #深搜路径 res = [] #返回结果 phone = &#123;&apos;2&apos;:&apos;abc&apos;,&apos;3&apos;:&apos;def&apos;,&apos;4&apos;:&apos;ghi&apos;,&apos;5&apos;:&apos;jkl&apos;,&apos;6&apos;:&apos;mno&apos;,&apos;7&apos;:&apos;pqrs&apos;,&apos;8&apos;:&apos;tuv&apos;,&apos;9&apos;:&apos;wxyz&apos;&#125; self.deepSearch(digits, begin, path, res, phone) return res def deepSearch(self, digits, begin, path, res, phone): # 深搜触底，回溯 if len(path) == len(digits) : res.append(path) return # 遍历当前数字代表的所有字母 for char in phone[digits[begin]]: path += char # 从下一位开始到最后一位的组合情况 self.deepSearch(digits, begin + 1, path, res, phone) path = path[:-1]]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[1. 两数之和 Two Sum]]></title>
     <url>%2F2018%2F04%2F05%2FSum%2F</url>
     <content type="text"><![CDATA[1. 粗暴，【超时】：123456class Solution: def twoSum(self, nums, target): for i, a in enumerate(nums): for j, b in enumerate(nums): if i!=j and a+b == target: return (i,j) 2. 先过滤掉明显不可能的元素，再粗暴，下标会变啊喂！【错误】1234567class Solution: def twoSum(self, nums, target): nums = list( filter(lambda x: x &lt;= target, nums) ) for i, a in enumerate(nums): for j, b in enumerate(nums): if i!=j and a+b == target: return (i,j) 3.使用字典，hash查找速度666【通过】12345678class Solution: def twoSum(self, nums, target): tmp = &#123;&#125; for i, a in enumerate(nums): if target-a in tmp: return (tmp[target-a], i) else: tmp[a] = i]]></content>
