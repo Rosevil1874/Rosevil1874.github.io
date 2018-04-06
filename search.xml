@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['删除链表的倒数第N个节点']]></title>
+    <url>%2F2018%2F04%2F06%2F%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[思路一： 首先，要删除的是倒数第N个结点，单链表只能从前往后遍历，这样就要求知道链表一共有多少个结点； 知道链表一共有多少个结点的方法就是先遍历一遍； 这样的话要删除某个结点需要再跟着链表往后走一遍，去删除目标结点； 遍历两边，不妙不妙啊(ó﹏ò｡) 思路二： 使用两个指针，一快一慢； 快的比慢的快N个结点； 当快的到达尾部的时候，慢的正好指向目标结点的pre结点，只需要轻轻跳过它就Okey-dokey yo! 遍历一遍，妙哉妙哉(｡◕ˇ∀ˇ◕) 123456789101112131415161718192021222324252627282930313233343536373839# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def removeNthFromEnd(self, head, n): """ :type head: ListNode :type n: int :rtype: ListNode """ # 空链表：返回空链表 if head is None: return None # 不用删：返回原链表 if n == 0: return head # 快慢指针 fast = head slow = head # 快指针移动N个结点 for i in range(n): fast = fast.next # 删除第一个结点 if fast is None: return head.next # 快慢指针同时后移 while fast.next != None: fast = fast.next slow = slow.next # 删结点 slow.next = slow.next.next return head]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA['四数相加']]></title>
     <url>%2F2018%2F04%2F06%2F%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0%2F</url>
-    <content type="text"><![CDATA[我是怎么也想不出来时间复杂度小一点的方法，于是只好利用搜索引擎了。 cr: Quadratic algorithm for 4-SUM zhuli19901106 leetcode：4Sums(四个数相加的和) 解题思路 升序排序； 使用双层循环计算两数之和； 两指针在剩余元素中相向移动； 若四数之和等于target，加入结果序列； 跳过重复值。 debug li是空数组，使用li[0]=xx这样赋值当然越界了，改用append。]]></content>
+    <content type="text"><![CDATA[我是怎么也想不出来时间复杂度小一点的方法，于是只好利用搜索引擎了。 cr: Quadratic algorithm for 4-SUM zhuli19901106 leetcode：4Sums(四个数相加的和) 解题思路 升序排序； 使用双层循环计算两数之和； 两指针在剩余元素中相向移动； 若四数之和等于target，加入结果序列； 跳过重复值。 123456789101112131415161718192021222324252627282930313233class Solution: def fourSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[List[int]] """ nums = sorted(nums) l = len(nums) res = [] # i1,i2,i3,i4为四个指针 for i1 in range(0, l-3): for i2 in range(i1 + 1, l-2): i3 = i2 + 1 i4 = l - 1 # 循环结束条件为两指针相遇 while i3 &lt; i4: the_sum = nums[i1] + nums[i2] + nums[i3] + nums[i4] if the_sum &lt; target: i3 += 1 elif the_sum &gt; target: i4 -= 1 else: li = [ nums[i1], nums[i2], nums[i3], nums[i4] ] if li not in res: res.append(li) i3 += 1 return res debuglist赋值错误li是空数组，使用li[0]=xx这样赋值当然越界了，改用append。]]></content>
       <tags>
         <tag>LeetCode</tag>
       </tags>
