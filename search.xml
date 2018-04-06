@@ -1,57 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA['两数相加']]></title>
+    <title><![CDATA[2 - 两数相加]]></title>
     <url>%2F2018%2F04%2F06%2F%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0%2F</url>
     <content type="text"><![CDATA[第一次尝试【链表-&gt;数字-&gt;链表】思路一： 两个函数：链表-&gt;数字，数字-&gt;链表； 分别将两个加数链表化为数字相加； 将和化为链表返回。 思路二： 由于链表是高低位反向表示数字的，所以第一个结点是个位，第二个结点是十位… 同时遍历两个链表，每往后走一个结点就扩大十倍，同时在这里做加法； 步骤二直到两个链表遍历结束； 将和转化为链表返回。 写了思路一，思路二和思路一大同小异，不写了，懒(°ω°｣∠) 1234567891011121314151617181920212223242526272829303132333435363738394041424344# Definition for singly-linked list.class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ num1 = self.LinkedListToNum(l1) num2 = self.LinkedListToNum(l2) num = num1 + num2 return self.NumToLinkedList(num) def LinkedListToNum(self, head): num = 0 multiple = 1 #倍数 if head.val == 0 and head.next == None: return 0 while head.next is not None: num += head.val * multiple head = head.next multiple *= 10 num += head.val * multiple return num def NumToLinkedList(self, num): if num == 0: return ListNode(0) else: v = num % 10 num = num // 10 head = ListNode(v) curr = head while num != 0 : v = num % 10 num = num // 10 curr.next = ListNode(v) curr = curr.next return head debug 原因：链表转数字的时候判断有误，看到人家头结点val==0直接就一票否决返回0了。12if head.val == 0: return 0 解决：应该再判断是不是只有这一个结点啊喂，只有一个val为0的结点的话是0没错，但只有最后一位是0有何不可啊。12if head.val == 0 and head.next == None: return 0 第二次尝试【加法进位】那么，就按加法运算法则来一位一位地相加进位吧;emmmm..虽然思路是有的但是看到人家的只有几行就运过来了(〃ﾉωﾉ) 123456789101112131415161718192021222324# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ head = ListNode(0) curr = head carry = 0 # 进位 while l1 is not None or l2 is not None or carry != 0: num = (l1.val if l1 else 0) + (l2.val if l2 else 0) + carry carry = num // 10 curr.next = ListNode( num % 10 ) curr = curr.next l1 = l1.next if l1 else l1 l2 = l2.next if l2 else l2 return head.next 人家的coding和我第一个代码的思路大致一样，就是其中的实现比较简单，人家就是人家，人家永远比你聪明哈哈哈o(╥﹏╥)ocr: 两个用链表表示的数字相加 思路： 将链表整体转成str，再reverse reverse之后转成int相加，得到re re再次reverse之后，循环转成链表 12345678910111213141516171819202122232425262728# Definition for singly-linked list.class ListNode(object): def __init__(self, x): self.val = x self.next = Noneclass Solution(object): def addTwoNumbers(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ s1 = self.genS(l1) s2 = self.genS(l2) re = str(int(s1) + int(s2))[::-1] tmp = result = ListNode(int(re[0])) for i in range(1, len(re)): tmp.next = ListNode(int(re[i])) tmp = tmp.next return result def genS(self, li): s = '' while li: s += str(li.val) li = li.next return s[::-1] #新技能get：翻转字符串]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA['删除链表的倒数第N个节点']]></title>
+    <title><![CDATA[19 - 删除链表的倒数第N个节点]]></title>
     <url>%2F2018%2F04%2F06%2F%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9%2F</url>
     <content type="text"><![CDATA[思路一： 首先，要删除的是倒数第N个结点，单链表只能从前往后遍历，这样就要求知道链表一共有多少个结点； 知道链表一共有多少个结点的方法就是先遍历一遍； 这样的话要删除某个结点需要再跟着链表往后走一遍，去删除目标结点； 遍历两边，不妙不妙啊(ó﹏ò｡) 思路二： 使用两个指针，一快一慢； 快的比慢的快N个结点； 当快的到达尾部的时候，慢的正好指向目标结点的pre结点，只需要轻轻跳过它就Okey-dokey yo! 遍历一遍，妙哉妙哉(｡◕ˇ∀ˇ◕) 123456789101112131415161718192021222324252627282930313233343536373839# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def removeNthFromEnd(self, head, n): """ :type head: ListNode :type n: int :rtype: ListNode """ # 空链表：返回空链表 if head is None: return None # 不用删：返回原链表 if n == 0: return head # 快慢指针 fast = head slow = head # 快指针移动N个结点 for i in range(n): fast = fast.next # 删除第一个结点 if fast is None: return head.next # 快慢指针同时后移 while fast.next != None: fast = fast.next slow = slow.next # 删结点 slow.next = slow.next.next return head]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA['四数相加']]></title>
+    <title><![CDATA[18 - 四数相加]]></title>
     <url>%2F2018%2F04%2F06%2F%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0%2F</url>
     <content type="text"><![CDATA[我是怎么也想不出来时间复杂度小一点的方法，于是只好利用搜索引擎了。 cr: Quadratic algorithm for 4-SUM zhuli19901106 leetcode：4Sums(四个数相加的和) 解题思路 升序排序； 使用双层循环计算两数之和； 两指针在剩余元素中相向移动； 若四数之和等于target，加入结果序列； 跳过重复值。 123456789101112131415161718192021222324252627282930313233class Solution: def fourSum(self, nums, target): """ :type nums: List[int] :type target: int :rtype: List[List[int]] """ nums = sorted(nums) l = len(nums) res = [] # i1,i2,i3,i4为四个指针 for i1 in range(0, l-3): for i2 in range(i1 + 1, l-2): i3 = i2 + 1 i4 = l - 1 # 循环结束条件为两指针相遇 while i3 &lt; i4: the_sum = nums[i1] + nums[i2] + nums[i3] + nums[i4] if the_sum &lt; target: i3 += 1 elif the_sum &gt; target: i4 -= 1 else: li = [ nums[i1], nums[i2], nums[i3], nums[i4] ] if li not in res: res.append(li) i3 += 1 return res debuglist赋值错误li是空数组，使用li[0]=xx这样赋值当然越界了，改用append。]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA['有效的括号']]></title>
+    <title><![CDATA[20 - 有效的括号]]></title>
     <url>%2F2018%2F04%2F05%2F%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7%2F</url>
     <content type="text"><![CDATA[数据结构经典题，用栈完美解决。12345678910111213141516171819202122232425262728class Solution: def isValid(self, s): """ :type s: str :rtype: bool """ if s is None: return false x = ['[','(','&#123;'] y = ["]",")","&#125;"] z = ["()","[]","&#123;&#125;"] stack = [] for char in s: if char in x: stack.append(char) elif char in y: if len(stack) == 0: return False else: temp = stack.pop(-1) + char if temp not in z: return False if len(stack) != 0: return False return True]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA['合并两个有序链表']]></title>
+    <title><![CDATA[21 - 合并两个有序链表]]></title>
     <url>%2F2018%2F04%2F05%2F%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[老老实实翻开数据结构合并吧 判断链表是否为空，若链表为空则返回空链表； 创建一个新的空链表； 创建一个指针pre指向新链表头； 依次判断两个旧链表头结点val大小，pre指向小的那个，且将这个“小链表”的头指针删去； 其中一个旧链表全部接到新链表后，将另一个链表剩下的部分接到新链表。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if l1 is None and is None: return None else if l1 is None return l2 else if l2 is None: return l1 new_list = ListNode(0) pre = new_list while l1 is not None and l2 is not None: if l1.val &lt; l2.val: pre.next = l1 l1 = l1.next else pre.next = l2 l2 = l2.next pre = pre.next if l1 is not None: pre.next = l1 else: pre.next = l2 return new_list.next 递归12345678910111213class Solution: def mergeTwoLists(self, l1, l2): if not l1: return l2 elif not l2: return l1 else: if l1.val &lt; l2.val: l1.next = self.mergeTwoLists(l1.next, l2) return l1 else: l2.next = self.mergeTwoLists(l1, l2.next) return l2]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[电话号码的字母组合']]></title>
+    <title><![CDATA[17 - 电话号码的字母组合]]></title>
     <url>%2F2018%2F04%2F05%2F%E7%94%B5%E8%AF%9D%E5%8F%B7%E7%A0%81%E7%9A%84%E5%AD%97%E6%AF%8D%E7%BB%84%E5%90%88%2F</url>
     <content type="text"><![CDATA[第一反应是全排列，但是怎么实现没有想到，久了没有刷过oj已经脑子生锈了。从别人那里借鉴的【深搜 + 递归】1234567891011121314151617181920212223242526class Solution: def letterCombinations(self, digits): """ :type digits: str :rtype: List[str] """ begin = 0 #当前需要处理的digits的位置 path = '' #深搜路径 res = [] #返回结果 phone = &#123;'2':'abc','3':'def','4':'ghi','5':'jkl','6':'mno','7':'pqrs','8':'tuv','9':'wxyz'&#125; self.deepSearch(digits, begin, path, res, phone) return res def deepSearch(self, digits, begin, path, res, phone): # 深搜触底，回溯 if len(path) == len(digits) : res.append(path) return # 遍历当前数字代表的所有字母 for char in phone[digits[begin]]: path += char # 从下一位开始到最后一位的组合情况 self.deepSearch(digits, begin + 1, path, res, phone) path = path[:-1]]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[1. 两数之和 Two Sum]]></title>
+    <title><![CDATA[1 - 两数之和 Two Sum]]></title>
     <url>%2F2018%2F04%2F05%2FSum%2F</url>
     <content type="text"><![CDATA[1. 粗暴，【超时】：123456class Solution: def twoSum(self, nums, target): for i, a in enumerate(nums): for j, b in enumerate(nums): if i!=j and a+b == target: return (i,j) 2. 先过滤掉明显不可能的元素，再粗暴，下标会变啊喂！【错误】1234567class Solution: def twoSum(self, nums, target): nums = list( filter(lambda x: x &lt;= target, nums) ) for i, a in enumerate(nums): for j, b in enumerate(nums): if i!=j and a+b == target: return (i,j) 3.使用字典，hash查找速度666【通过】12345678class Solution: def twoSum(self, nums, target): tmp = &#123;&#125; for i, a in enumerate(nums): if target-a in tmp: return (tmp[target-a], i) else: tmp[a] = i]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
       <tags>
         <tag>LeetCode</tag>
       </tags>
