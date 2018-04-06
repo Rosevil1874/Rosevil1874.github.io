@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA['有效的括号']]></title>
-    <url>%2F2018%2F04%2F05%2F%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7-1%2F</url>
-    <content type="text"></content>
+    <title><![CDATA['四数相加']]></title>
+    <url>%2F2018%2F04%2F06%2F%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0%2F</url>
+    <content type="text"><![CDATA[我是怎么也想不出来时间复杂度小一点的方法，于是只好利用搜索引擎了。 cr: Quadratic algorithm for 4-SUM zhuli19901106 leetcode：4Sums(四个数相加的和) 解题思路 升序排序； 使用双层循环计算两数之和； 两指针在剩余元素中相向移动； 若四数之和等于target，加入结果序列； 跳过重复值。 debug li是空数组，使用li[0]=xx这样赋值当然越界了，改用append。]]></content>
+      <tags>
+        <tag>LeetCode</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA['有效的括号']]></title>

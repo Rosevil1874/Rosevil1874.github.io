@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosevil1874.github.io/"/>
-  <updated>2018-04-05T11:42:36.333Z</updated>
+  <updated>2018-04-06T08:33:41.475Z</updated>
   <id>https://rosevil1874.github.io/</id>
   
   <author>
@@ -17,16 +17,22 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>&#39;有效的括号&#39;</title>
-    <link href="https://rosevil1874.github.io/2018/04/05/%E6%9C%89%E6%95%88%E7%9A%84%E6%8B%AC%E5%8F%B7-1/"/>
-    <id>https://rosevil1874.github.io/2018/04/05/有效的括号-1/</id>
-    <published>2018-04-05T11:42:36.000Z</published>
-    <updated>2018-04-05T11:42:36.333Z</updated>
+    <title>&#39;四数相加&#39;</title>
+    <link href="https://rosevil1874.github.io/2018/04/06/%E5%9B%9B%E6%95%B0%E7%9B%B8%E5%8A%A0/"/>
+    <id>https://rosevil1874.github.io/2018/04/06/四数相加/</id>
+    <published>2018-04-06T07:48:52.000Z</published>
+    <updated>2018-04-06T08:33:41.475Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2018/04/06/四数相加/AC.png"><a id="more"></a><img src="/2018/04/06/四数相加/18.png"><p>我是怎么也想不出来时间复杂度小一点的方法，于是只好利用搜索引擎了。</p><p>cr: </p><ul><li><a href="https://stackoverflow.com/questions/14732277/quadratic-algorithm-for-4-sum" target="_blank" rel="noopener">Quadratic algorithm for 4-SUM</a></li><li><a href="https://github.com/zhuli19901106/leetcode-2/blob/master/4sum_1_AC.cpp" target="_blank" rel="noopener">zhuli19901106</a></li><li><a href="http://www.cnblogs.com/zhaolizhen/p/3378685.html" target="_blank" rel="noopener">leetcode：4Sums(四个数相加的和)</a></li></ul><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ol><li>升序排序；</li><li>使用双层循环计算两数之和；</li><li>两指针在剩余元素中相向移动；</li><li>若四数之和等于target，加入结果序列；</li><li>跳过重复值。</li></ol><h2 id="debug"><a href="#debug" class="headerlink" title="debug"></a>debug</h2><img src="/2018/04/06/四数相加/error.png"><p>li是空数组，使用li[0]=xx这样赋值当然越界了，改用append。</p>]]></content>
     
     <summary type="html">
     
+      &lt;img src=&quot;/2018/04/06/四数相加/AC.png&quot;&gt;
+    
     </summary>
     
+    
+      <category term="LeetCode" scheme="https://rosevil1874.github.io/tags/LeetCode/"/>
     
   </entry>
   
