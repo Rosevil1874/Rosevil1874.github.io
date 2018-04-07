@@ -1,9 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['罗马数字转整数']]></title>
+    <url>%2F2018%2F04%2F07%2F%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[12 - 罗马数字转整数]]></title>
+    <url>%2F2018%2F04%2F07%2F13.%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[罗马数字我觉得这位兄台的和百科差不多，又比百科美观，就借过来用用嘻嘻。 整数转罗马数字cr: leetcode 罗马数字与整数的转换算法 idea: 用“放在大数左边的数字只能使用一个”的特点来判断对当前字母是加还是减。 123456789101112131415161718192021class Solution: def intToRoman(self, num): """ :type num: int :rtype: str """ if num &lt;= 0: return '' ret = '' roman = ["M","CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"] arab = [1000, 900, 500, 400, 100,90, 50, 40, 10, 9, 5, 4, 1] for i in range(13): if num &gt; 0: if num &lt; arab[i]: continue while num &gt;= arab[i]: num -= arab[i] ret += roman[i] return ret]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode, Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[12 - 整数转罗马数字]]></title>
+    <url>%2F2018%2F04%2F07%2F12.%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%2F</url>
+    <content type="text"><![CDATA[恕我无知，拿到这题的第一件事就是上搜索引擎，看看罗马数字是咋回事。。。 罗马数字我觉得这位兄台的和百科差不多，又比百科美观，就借过来用用嘻嘻。 整数转罗马数字cr: leetcode 罗马数字与整数的转换算法 数字可以放在左边也可以放在右边，逻辑比较复杂。 如果都只能放在右边，那样就可以直接使用加法。如9表示为IX, 而如果表示为 VIIII,这样处理相加就OK. 可以使用组合数字来进行拆分，使程序能够实现连加的方法。 123456789101112131415161718192021class Solution: def intToRoman(self, num): """ :type num: int :rtype: str """ if num &lt;= 0: return '' ret = '' roman = ["M","CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"] arab = [1000, 900, 500, 400, 100,90, 50, 40, 10, 9, 5, 4, 1] for i in range(13): if num &gt; 0: if num &lt; arab[i]: continue while num &gt;= arab[i]: num -= arab[i] ret += roman[i] return ret]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode, Python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[9 - 回文数]]></title>
+    <url>%2F2018%2F04%2F07%2F9.%E5%9B%9E%E6%96%87%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[思路一：直接颠倒数字12345678910111213141516class Solution: def isPalindrome(self, x): """ :type x: int :rtype: bool """ if x &lt; 0: return False y = x r = 0 while x &gt; 0: r = r*10 + x%10 x = x // 10 return r == y 思路一：转换成字符串颠倒123456789101112class Solution: def isPalindrome(self, x): """ :type x: int :rtype: bool """ if x &lt; 0: return False x = str(x) y = str(x)[::-1] return x == y 这道题是我做了，额，接近十题（惭愧惭愧）以来最最最easy的一题了hiahiahia✧｡٩(ˊᗜˋ)و✧*｡]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode, Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[3 - 无重复字符的最长子串]]></title>
     <url>%2F2018%2F04%2F07%2F3.%E6%97%A0%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E4%B8%B2%2F</url>
-    <content type="text"><![CDATA[自己的方法首先这个题目之前肯定是做过的，但是，我就知道我如此暴力肯定会超时o(╥﹏╥)o 思路： 字符串长度为0或者1直接返回0/1； 外层循环：从第一个字符开始，依次将每一个字符作为结果字符串的首字符； 内层循环：依次加字符，若是出现重复就将此重复字符作为首字符； 可行是可行，但就是超时了。。。 1234567891011121314151617181920212223242526272829class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ l = len(s) if l == 0 or l == 1: return l max_l = 1 max_r = '' for i in range(l): res = s[i] tmp_l = 1 tmp_r = res for j in range(i+1, l): if s[j] not in res: res += s[j] else: res = s[j] length = len(res) tmp_l = tmp_l if tmp_l &gt; length else length tmp_r = tmp_r if tmp_l &gt; length else res max_l = max_l if max_l &gt; tmp_l else tmp_l # max_r = max_r if max_l &gt; tmp_l else tmp_r # return max_r return max_l 别人的方法思路： 遍历字符串，过程中将出现过的字符存入字典，key为字符，value为字符下标 用maxLength保存遍历过程中找到的最大不重复子串的长度 用start保存最长子串的开始下标 如果字符已经出现在字典中，更新start的值 如果字符不在字典中，更新maxLength的值 1234567891011121314151617class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ start = maxLength = 0 usedChar = &#123;&#125; for i in range(l): if s[i] in usedChar and start &lt;= usedChar[s[i]]: start = usedChar[s[i]] + 1 else: maxLength = max(maxLength, i - start + 1) usedChar[s[i]] = i return maxLength 有了我，LeetCode的AC率恐怕。。。 :eyes:]]></content>
+    <content type="text"><![CDATA[自己的方法首先这个题目之前肯定是做过的，但是，我就知道我如此暴力肯定会超时o(╥﹏╥)o 思路： 字符串长度为0或者1直接返回0/1； 外层循环：从第一个字符开始，依次将每一个字符作为结果字符串的首字符； 内层循环：依次加字符，若是出现重复就将此重复字符作为首字符； 可行是可行，但就是超时了。。。 1234567891011121314151617181920212223242526272829class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ l = len(s) if l == 0 or l == 1: return l max_l = 1 max_r = '' for i in range(l): res = s[i] tmp_l = 1 tmp_r = res for j in range(i+1, l): if s[j] not in res: res += s[j] else: res = s[j] length = len(res) tmp_l = tmp_l if tmp_l &gt; length else length tmp_r = tmp_r if tmp_l &gt; length else res max_l = max_l if max_l &gt; tmp_l else tmp_l # max_r = max_r if max_l &gt; tmp_l else tmp_r # return max_r return max_l 别人的方法思路： 遍历字符串，过程中将出现过的字符存入字典，key为字符，value为字符下标 用maxLength保存遍历过程中找到的最大不重复子串的长度 用start保存最长子串的开始下标 如果字符已经出现在字典中，更新start的值 如果字符不在字典中，更新maxLength的值 1234567891011121314151617class Solution: def lengthOfLongestSubstring(self, s): """ :type s: str :rtype: int """ start = maxLength = 0 usedChar = &#123;&#125; for i in range(l): if s[i] in usedChar and start &lt;= usedChar[s[i]]: start = usedChar[s[i]] + 1 else: maxLength = max(maxLength, i - start + 1) usedChar[s[i]] = i return maxLength 有了我，LeetCode的AC率恐怕。。。]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
