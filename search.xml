@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['正则表达式匹配']]></title>
+    <url>%2F2018%2F04%2F09%2F10.%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[8 - 字符串转整数]]></title>
     <url>%2F2018%2F04%2F09%2F8.%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B4%E6%95%B0%2F</url>
     <content type="text"><![CDATA[题目描述 方法 嗯要注意的地方题目上已经说得非常明白了，一个一个care就好啦。 12345678910111213141516171819202122232425262728293031323334353637383940414243class Solution: def myAtoi(self, str): """ :type str: str :rtype: int """ l = len(str) ret = 0 is_valid = False # 是否无效， flag = 1 # 1：正数，-1：负数 i = 0 if l == 0: return 0 while i &lt; l and str[i] == ' ': i += 1 if str[i] == '+' or str[i] == '-': flag = 1 if str[i] == '+' else -1 i += 1 while i &lt; l: if '0' &lt;= str[i] &lt;= '9': is_valid = True ret = ret * 10 + int(str[i]) i += 1 else: break # 检查是否有效、是否负数 if not is_valid: return 0 elif flag == -1: ret = -ret # 检查是否溢出 if ret &gt; 2147483647: return 2147483647 elif ret &lt; -2147483648: return -2147483648 else: return ret]]></content>
@@ -174,6 +179,7 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
