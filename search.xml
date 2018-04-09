@@ -3,7 +3,14 @@
   <entry>
     <title><![CDATA['正则表达式匹配']]></title>
     <url>%2F2018%2F04%2F09%2F10.%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[题目描述 自己的思路： 由于*控制的是其前面字符的匹配，因此可以由正则表达式的末尾开始检查； 没了。。没了。。。直接用字符串的方法肯定是不行的，越想越复杂。。 ↓↓别人的思路 If you are stuck, recursion is your friend. 递归 cr:[LeetCode] Regular Expression Matching 正则表达式匹配 这个代码还没调通，递归调用函数出错，作用域问题 1234567891011121314151617181920212223242526272829303132class Solution: def isMatch(self, s, p): """ :type s: str :type p: str :rtype: bool """ s_len = len(s) p_len = len(p) if s_len == 0 and p_len == 0: return False if s_len == 1 and p_len == 1: if s[0] == p[0] or p[0] == '.': return True else: return False if p[1] != '*': if s_len == 0: return False if s[0] == p[0] or p[0] == '.': return isMatch(self, s[1:], p[1:]) else: return False while len(s) and (s[0] == p[0] or p[0] == '.'): if isMatch(self, s, p[2:]): return True s = s[1:] return isMatch(self, s, p[2:]) 动态规划 cr:leetcode 10 Regular Expression Matching This problem has a typical solution using Dynamic Programming. We define the state P[i][j] to be true if s[0..i) matches p[0..j) and false otherwise. Then the state equations are:a. P[i][j] = P[i - 1][j - 1], if p[j - 1] != ‘’ &amp;&amp; (s[i - 1] == p[j - 1] || p[j - 1] == ‘.’);b. P[i][j] = P[i][j - 2], if p[j - 1] == ‘’ and the pattern repeats for 0 times;c. P[i][j] = P[i - 1][j] &amp;&amp; (s[i - 1] == p[j - 2] || p[j - 2] == ‘.’), if p[j - 1] == ‘*’ and the pattern repeats for at least 1 times.Putting these together, we will have the following code. 12345678910111213141516171819202122232425class Solution: def isMatch(self, s, p): """ :type s: str :type p: str :rtype: bool """ s_len = len(s) p_len = len(p) dp = [[True] + [False] * s_len] for i in range(p_len): dp.append([False]*(s_len+1)) for i in range(1, p_len + 1): x = p[i-1] if x == '*' and i &gt; 1: dp[i][0] = dp[i-2][0] for j in range(1, s_len+1): if x == '*': dp[i][j] = dp[i-2][j] or dp[i-1][j] or (dp[i-1][j-1] and p[i-2] == s[j-1]) or (dp[i][j-1] and p[i-2]=='.') elif x == '.' or x == s[j-1]: dp[i][j] = dp[i-1][j-1] return dp[p_len][s_len] 使用第三方库re一行代码/微笑脸12345import reclass Solution: def isMatch(self, s, p): return re.match('^' + p + '$', s) != None]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[8 - 字符串转整数]]></title>
@@ -13,7 +20,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -24,7 +32,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -35,7 +44,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -46,7 +56,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -57,7 +68,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -68,7 +80,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -79,7 +92,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -90,7 +104,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -101,7 +116,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -113,6 +129,7 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -124,6 +141,7 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -135,6 +153,7 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -146,17 +165,19 @@
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[21 - 合并两个有序链表]]></title>
     <url>%2F2018%2F04%2F05%2F21.%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[老老实实翻开数据结构合并吧 判断链表是否为空，若链表为空则返回空链表； 创建一个新的空链表； 创建一个指针pre指向新链表头； 依次判断两个旧链表头结点val大小，pre指向小的那个，且将这个“小链表”的头指针删去； 其中一个旧链表全部接到新链表后，将另一个链表剩下的部分接到新链表。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if l1 is None and is None: return None else if l1 is None return l2 else if l2 is None: return l1 new_list = ListNode(0) pre = new_list while l1 is not None and l2 is not None: if l1.val &lt; l2.val: pre.next = l1 l1 = l1.next else pre.next = l2 l2 = l2.next pre = pre.next if l1 is not None: pre.next = l1 else: pre.next = l2 return new_list.next 递归12345678910111213class Solution: def mergeTwoLists(self, l1, l2): if not l1: return l2 elif not l2: return l1 else: if l1.val &lt; l2.val: l1.next = self.mergeTwoLists(l1.next, l2) return l1 else: l2.next = self.mergeTwoLists(l1, l2.next) return l2]]></content>
+    <content type="text"><![CDATA[题目描述 老老实实翻开数据结构合并吧 判断链表是否为空，若链表为空则返回空链表； 创建一个新的空链表； 创建一个指针pre指向新链表头； 依次判断两个旧链表头结点val大小，pre指向小的那个，且将这个“小链表”的头指针删去； 其中一个旧链表全部接到新链表后，将另一个链表剩下的部分接到新链表。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeTwoLists(self, l1, l2): """ :type l1: ListNode :type l2: ListNode :rtype: ListNode """ if l1 is None and is None: return None else if l1 is None return l2 else if l2 is None: return l1 new_list = ListNode(0) pre = new_list while l1 is not None and l2 is not None: if l1.val &lt; l2.val: pre.next = l1 l1 = l1.next else pre.next = l2 l2 = l2.next pre = pre.next if l1 is not None: pre.next = l1 else: pre.next = l2 return new_list.next 递归12345678910111213class Solution: def mergeTwoLists(self, l1, l2): if not l1: return l2 elif not l2: return l1 else: if l1.val &lt; l2.val: l1.next = self.mergeTwoLists(l1.next, l2) return l1 else: l2.next = self.mergeTwoLists(l1, l2.next) return l2]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
       <tags>
         <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -167,7 +188,8 @@
         <category>LeetCode</category>
       </categories>
       <tags>
-        <tag>LeetCode, Python</tag>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
       </tags>
   </entry>
   <entry>
@@ -208,16 +230,5 @@
       <categories>
         <category>Programming ideas</category>
       </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Goodbye 2017]]></title>
-    <url>%2F2017%2F12%2F30%2FGoodbye-2017%2F</url>
-    <content type="text"><![CDATA[把今年的愿望，再许一遍。 20172017倒数第二天，我这一年都做了些什么。 大三下03-21 加入KEEP，开始一点点运动 :muscle:06-18 骑行10公里，参加毕业音乐会06-24 广州参观实习，火车通宵、各种夜宵、小蛮腰—– 上半年可以说是一片空白了 :broken_heart: 大四上08-15 陪汪大铮在长沙晃哒了一周，炒鸡开心，也比较遗憾自己有些心不在焉(智障障 :zzz: )08-22 准备找工作每天投简历参加笔试，后来准备保研复试—– 南大复试，Java机试0AC，一个人吃了一笼鸡汁灌汤包09-23 复旦复试，和燕子去了上海，鲜肉月饼啧啧啧10-01 开始练字10-02 使用WordPress搭建了第一个自己的博客，立即闲置 :joy:10-29 去46LiveHouse看了谢春花小姐姐的演出11-04 开始家教，给师大大二的小男生上算法，C++，计组11-18 开始“融城计划”，和兰东旭小哥哥一起去给小朋友上音乐课12-23 燕子考研，不用再去接她回宿舍啦12-30 使用GitPage+Hexo搭建了自己的第二个博客，希望能用起来—– 退了天鹅湖的票买了一把小U，开始学习吧—– 粗略学习了python，使用其进行中文微博情感分析 2018找不到我的2017新年愿望了，估计一项也没有实现，现在的2018新年愿望很有可能和去年的是一样的(ー_ー)!! 改变自己最大的心理问题，不要害怕被人看到自己的努力，别人看不到你努力自己同样会努力，你这样会被那些开心积极乐观奋斗的人超越得远远的。不管学习还是生活方面的。 运动 :point_right: 你的身体不允许懒惰 饮食 :point_right: 甜食少一点，多巴胺多一点 作息 :point_right: 早起办到了，还要早睡 小U :point_right: 一年很长，能学会的 练字 :point_right: 慢慢来吧，坚持 阅读 :point_right: 跳出舒适区 英语 :point_right: 单词，歌曲，阅读，发声 生活 :sunny: 你和你的家人朋友才是最重要的 你有那么多的收藏夹叫做better me，一定可以做到的呀，慢慢来。]]></content>
-      <categories>
-        <category>Diary</category>
-      </categories>
-      <tags>
-        <tag>wishes</tag>
-      </tags>
   </entry>
 </search>
