@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[6 - Z字形转换]]></title>
+    <url>%2F2018%2F04%2F09%2F6.Z%E5%AD%97%E5%BD%A2%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[看到题目的时候一脸懵逼，这啥呀，啥Z字形啊咋排的呀，怪不得这么多人给了unlike嚯嚯嚯。。。 事实证明，只有行数多了才能看出这个z，下图是直接用下标排的，一共5行。 思路： 一共N行时，total = 2*(N-1)个字符组成一个完整序列，即Z字的前两划； 每total个字符为一组，计算这一组中每个字符在第几行； 从第一行开始，把每一行的字符拼接起来返回。 123456789101112131415161718192021222324252627class Solution: def convert(self, s, numRows): """ :type s: str :type numRows: int :rtype: str """ if numRows == 1: return s l = len(s) total = 2 * (numRows - 1) tmp = [] ret = '' for k in range(numRows): tmp.append('') for i in range(l): idx = i % total if idx &gt;= numRows: idx = total - idx tmp[idx] += s[i] for j in range(numRows): ret += tmp[j] return ret 自测是没有问题的，提交了三次都提交不上去，我也只好unlike了( ･´ω`･ )]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode, Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[5 - 最长回文子串]]></title>
     <url>%2F2018%2F04%2F08%2F5.%E6%9C%80%E9%95%BF%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%2F</url>
     <content type="text"><![CDATA[方法一思路： 分别以每个元素为中心，找出偶数长度的最长回文子串和奇数长度的最长回文子串 取奇偶中最长的一个 取所有元素为中心的最长的一个1234567891011121314151617181920212223242526272829303132class Solution: def longestPalindrome(self, s): """ :type s: str :rtype: str """ l = len(s) if l &lt;= 1: return s start = 0 max_len = 0 max_s = '' for i in range(1, l): low = i - 1 high = i while low&gt;=0 and high&lt;l and s[low]==s[high]: low -= 1 high += 1 if high-low+1 &gt; max_len: max_len = high-low+1 max_s = s[low+1 : high] low = i - 1 high = i + 1 while low&gt;=0 and high&lt;l and s[low]==s[high]: low -= 1 high += 1 if high-low+1 &gt; max_len: max_len = high-low+1 max_s = s[low+1 : high] return max_s 方法二：Manacher算法中期答辩精力有限，下次吧]]></content>
