@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Error集锦]]></title>
+    <url>%2F2018%2F04%2F12%2FError%E9%9B%86%E9%94%A6%2F</url>
+    <content type="text"><![CDATA[1. 缩进错误 IndentationError: unindent does not match any outer indentation level TabError: inconsistent use of tabs and spaces in indentation 这个错误就像全角半角符号一样让人抓狂，要是想整死一个程序员，就悄悄把他代码里的半角字符换成全角的，他就会开始漫长又愉快的debug~你永远不知道自己什么时候会出现缩进错误，即使你认为所有地方都使用了tab键ヽ(｀Д´)ﾉ︵ ┻━┻ ┻━┻ 解决办法 老老实实调整，把报错那行重新缩进，确定使用tab 【偶尔有效】 好好看看sublime右下角，怎么是space啊喂！ 点击这里，变成tab，文档里的空格就自动变成tab了，你会看到有些小地方闪了一下，就是那些地方的空格让你出错/微笑。]]></content>
+      <categories>
+        <category>小结</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>Error</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[链表]]></title>
+    <url>%2F2018%2F04%2F12%2F%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[一、单链表 1. 结点类1234class ListNode: def __init__(self, n): self.val = n self.next = None 2. 单链表类实现基本操作： 初始化 判断是否为空 清空链表 取得链表长度 在链表末尾添加结点 在指定位置添加结点 删除指定位置的结点 替换指定位置结点值 查找指定值所在结点位置注：[下标均以0开始] 使用表头结点：表头结点是链表的第一个结点，除了值被忽略以外和其它结点一致，但它不被当做链表中的实际元素。头结点的存在使得空链表与非空链表处理一致，也方便对链表的开始结点的插入或删除操作。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108class SinLinkedList: def __init__(self): self.head = ListNode(None) # 是否为空 def isEmpty(self): return self.length() == 0 # 清空 def clear(self): self.head = ListNode(None) # 链表长度 def length(self): cnt = 0 curr = self.head while curr.next is not None: cnt += 1 curr = curr.next return cnt # 在链表末尾添加结点 def append(self, val): node = ListNode(val) if self.head is None: self.head = node else: p = self.head while p.next: p = p.next p.next = node # 在指定位置添加结点 def insert(self, idx, value): if self.isEmpty(): print('链表为空') p = self.head new = ListNode(value) while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: q = p.next p.next = new new.next = q # 删除指定位置的结点 def delete(self, idx): if self.isEmpty(): print('链表为空') p = self.head while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: p.next = p.next.next # 替换指定位置结点值 def replace(self, idx, newValue): if self.isEmpty(): print('链表为空') p = self.head new = ListNode(newValue) while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: q = p.next.next p.next = new new.next = q # 查找第idx个结点值 def search(self, idx): if self.isEmpty(): print('链表为空') return p = self.head while p.next and idx &gt; 0: p = p.next idx -= 1 if idx &gt; 0: print('超出链表长度') else: return p.val # 查找指定值所在结点位置 def index(self, value): if self.isEmpty(): print('链表为空') return p = self.head idx = 0 while p.next and not p.val == value: p = p.next idx += 1 return idx - 1 3. 测试12345678910111213l = SinLinkedList()l.append(12)l.append(233)l.insert(1, 666)l.replace(1, 6666)l.delete(1)print(l.index(12))print(l.search(1))h = l.head.nextwhile h: print(h.val) h = h.next 二、单向循环链表特点：从表中任意结点出发均可找到链表中其它结点，查找效率高。 判断是否存在环： 多个结点的后继指针重复； 使用两个移动速度不同的指针，若相遇则存在环。 1. 节点类-将结点属性设为私有变量12345678910111213141516class ListNode: def __init__(self, n): self.__val = n self.__next = None def __getVal__(self): return self.__val def setVal(self, newVal): self.__val = newVal def getNext(self): return self.__next def setNext(self, newNext): self.__next = newNext 2.单向循环链表类实现基本操作： 初始化 判断是否为空 清空链表 取得链表长度 在头结点后插入结点：头插法 删除指定值的结点 替换指定结点值 查找指定结点并返回下标，不存在返回-1 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455class SinCycLinkedList: def __init__(self): self.head = ListNode(None) self.head.setNext(self.head) # 判断是否为空 def isEmpty(self): return self.head.getNext() == self.head # 清空链表 def clear(self): self.head.setNext(self.head) # 取得链表长度 def length(self): cnt = 0 curr = self.head.getNext() while curr != self.head: curr = curr.getNext() cnt += 1 return cnt # 在头结点后插入结点：头插法 def unshift(self, val): new = ListNode(val) new.setNext(self.head.getNext()) self.head.setNext(new) # 删除指定值的结点 def delete(self, val): prev = self.head while prev.getNext() != self.head: curr = prev.getNext() if curr.getVal() == val: prev.setNext( curr.getNext() ) prev = prev.getNext() # 替换指定结点值 def raplce(self, val, newVal): prev = self.head while prev.getNext() != self.head: curr = prev.getNext() if curr.getVal() == val: curr.setVal(newVal) prev = prev.getNext() # 查找指定结点并返回下标，不存在返回-1 def search(self, val): idx = 0 curr = self.head.getNext() while curr != self.head: if curr.getVal() == val: return idx idx += 1 return -1 3. 测试123456789101112131415l = SinCycLinkedList()l.unshift(111)l.unshift(222)l.unshift(666)l.raplce(111, 233)l.delete(222)print('666 is in: ', l.search(666))# l.clear()sprint('length: %d' % l.length())print('\nitems:')h = l.headwhile h.getNext() != l.head: print(h.getNext().getVal()) h = h.getNext()]]></content>
+      <categories>
+        <category>数据结构+算法</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>数据结构</tag>
+        <tag>链表</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[25 - 每k个一组翻转链表]]></title>
     <url>%2F2018%2F04%2F11%2F25.%E6%AF%8Fk%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
     <content type="text"><![CDATA[题目描述 审题：仔细审题说三遍啊，看到这个题目才想起来24题我的第一个蠢蠢的方法不止蠢还不符合题目要求orz你不应该改变节点的值，只有节点位置本身可能会改变 方法 首先要知道如何反转链表； 按结点数确定分组； 对确定的分组使用尾插法逆置，然后设置新的起点； 若最后没有k个结点直接跳过。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ pre = tail = ListNode(-1) q = head while q is not None: # 向后查找k个结点 n = k p = q while p is not None and n &gt; 0: p = p.next n -= 1 # 若在查找到k个结点过程中遇到None，说明后面不足k个 if n &gt; 0: tail.next = q break # 将这k个结点逆置 end = q while q != p: t = q.next q.next = tail.next tail.next = q q = t tail = end return pre.next]]></content>
