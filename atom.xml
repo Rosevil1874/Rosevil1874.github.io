@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://rosevil1874.github.io/"/>
-  <updated>2018-04-11T09:05:36.771Z</updated>
+  <updated>2018-04-12T01:06:29.806Z</updated>
   <id>https://rosevil1874.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>25 - 每k个一组翻转链表</title>
+    <link href="https://rosevil1874.github.io/2018/04/11/25.%E6%AF%8Fk%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8/"/>
+    <id>https://rosevil1874.github.io/2018/04/11/25.每k个一组翻转链表/</id>
+    <published>2018-04-11T09:09:34.000Z</published>
+    <updated>2018-04-12T01:06:29.806Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><a id="more"></a><blockquote><p>审题：<br>仔细审题说三遍啊，看到这个题目才想起来24题我的第一个蠢蠢的方法不止蠢还不符合题目要求orz<br><strong>你不应该改变节点的值，只有节点位置本身可能会改变</strong></p></blockquote><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ol><li>首先要知道如何反转链表；</li><li>按结点数确定分组；</li><li>对确定的分组使用尾插法逆置，然后设置新的起点；</li><li>若最后没有k个结点直接跳过。<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.val = x</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reverseKGroup</span><span class="params">(self, head, k)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :type k: int</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        pre = tail = ListNode(<span class="number">-1</span>)</span><br><span class="line">        q = head</span><br><span class="line">        <span class="keyword">while</span> q <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="comment"># 向后查找k个结点</span></span><br><span class="line">            n = k</span><br><span class="line">            p = q</span><br><span class="line">            <span class="keyword">while</span> p <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span> <span class="keyword">and</span> n &gt; <span class="number">0</span>:</span><br><span class="line">                p = p.next</span><br><span class="line">                n -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 若在查找到k个结点过程中遇到None，说明后面不足k个</span></span><br><span class="line">            <span class="keyword">if</span> n &gt; <span class="number">0</span>:</span><br><span class="line">                tail.next = q</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># 将这k个结点逆置</span></span><br><span class="line">            end = q</span><br><span class="line">            <span class="keyword">while</span> q != p:</span><br><span class="line">                t = q.next</span><br><span class="line">                q.next = tail.next</span><br><span class="line">                tail.next = q</span><br><span class="line">                q = t</span><br><span class="line">            tail = end</span><br><span class="line">        <span class="keyword">return</span> pre.next</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;
+    
+    </summary>
+    
+      <category term="LeetCode" scheme="https://rosevil1874.github.io/categories/LeetCode/"/>
+    
+    
+      <category term="LeetCode" scheme="https://rosevil1874.github.io/tags/LeetCode/"/>
+    
+      <category term="Python" scheme="https://rosevil1874.github.io/tags/Python/"/>
+    
+  </entry>
   
   <entry>
     <title>24 - 交换相邻结点</title>
@@ -141,9 +165,9 @@
     <link href="https://rosevil1874.github.io/2018/04/10/LeetCode%E5%B0%8F%E8%AE%B0/"/>
     <id>https://rosevil1874.github.io/2018/04/10/LeetCode小记/</id>
     <published>2018-04-10T02:33:58.000Z</published>
-    <updated>2018-04-11T09:11:44.288Z</updated>
+    <updated>2018-04-12T01:06:25.731Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="没咋弄懂的"><a href="#没咋弄懂的" class="headerlink" title="没咋弄懂的"></a>没咋弄懂的</h2><ol><li>两个排序数组的中位数 → <a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/description/" target="_blank" rel="noopener">戳</a></li><li>最长回文子串 → <a href="https://leetcode-cn.com/problems/longest-palindromic-substring/description/" target="_blank" rel="noopener">戳</a></li><li>正则表达式匹配 → <a href="https://leetcode-cn.com/problems/regular-expression-matching/description/" target="_blank" rel="noopener">戳</a></li><li>整数转罗马数字 → <a href="https://leetcode-cn.com/problems/integer-to-roman/description/" target="_blank" rel="noopener">戳</a></li><li>罗马数字转整数 → <a href="https://leetcode-cn.com/problems/roman-to-integer/description/" target="_blank" rel="noopener">戳</a></li><li>三数之和 → <a href="https://rosevil1874.github.io/2018/04/05/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/#more">三数之和-传送门</a></li><li>合并K个元素的有序链表 → <a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/description/" target="_blank" rel="noopener">戳</a></li><li>交换相邻结点 → <a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/description/" target="_blank" rel="noopener">戳</a></li></ol>]]></content>
+    <content type="html"><![CDATA[<h2 id="没咋弄懂的"><a href="#没咋弄懂的" class="headerlink" title="没咋弄懂的"></a>没咋弄懂的</h2><ol><li>两个排序数组的中位数 → <a href="https://leetcode-cn.com/problems/median-of-two-sorted-arrays/description/" target="_blank" rel="noopener">戳</a></li><li>最长回文子串 → <a href="https://leetcode-cn.com/problems/longest-palindromic-substring/description/" target="_blank" rel="noopener">戳</a></li><li>正则表达式匹配 → <a href="https://leetcode-cn.com/problems/regular-expression-matching/description/" target="_blank" rel="noopener">戳</a></li><li>整数转罗马数字 → <a href="https://leetcode-cn.com/problems/integer-to-roman/description/" target="_blank" rel="noopener">戳</a></li><li>罗马数字转整数 → <a href="https://leetcode-cn.com/problems/roman-to-integer/description/" target="_blank" rel="noopener">戳</a></li><li>三数之和 → <a href="https://rosevil1874.github.io/2018/04/05/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/#more">三数之和-传送门</a></li><li>合并K个元素的有序链表 → <a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/description/" target="_blank" rel="noopener">戳</a></li><li>交换相邻结点 → <a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/description/" target="_blank" rel="noopener">戳</a></li><li><a href="https://rosevil1874.github.io/2018/04/05/25.每k个一组翻转链表/#more">aaa</a></li></ol><h2 id="一些小技巧"><a href="#一些小技巧" class="headerlink" title="一些小技巧"></a>一些小技巧</h2><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><ol><li>双指针</li><li>尾插法</li><li>段遍历</li></ol><h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3>]]></content>
     
     <summary type="html">
     
@@ -463,30 +487,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;img src=&quot;/2018/04/06/2.两数相加/2.png&quot;&gt;
-    
-    </summary>
-    
-      <category term="LeetCode" scheme="https://rosevil1874.github.io/categories/LeetCode/"/>
-    
-    
-      <category term="LeetCode" scheme="https://rosevil1874.github.io/tags/LeetCode/"/>
-    
-      <category term="Python" scheme="https://rosevil1874.github.io/tags/Python/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>19 - 删除链表的倒数第N个节点</title>
-    <link href="https://rosevil1874.github.io/2018/04/06/19.%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACN%E4%B8%AA%E8%8A%82%E7%82%B9/"/>
-    <id>https://rosevil1874.github.io/2018/04/06/19.删除链表的倒数第N个节点/</id>
-    <published>2018-04-06T09:42:29.000Z</published>
-    <updated>2018-04-09T05:54:01.110Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><img src="/2018/04/06/19.删除链表的倒数第N个节点/19.png"><a id="more"></a><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>思路一：</p><ol><li>首先，要删除的是<strong>倒数</strong>第N个结点，单链表只能从前往后遍历，这样就要求知道链表一共有多少个结点；</li><li>知道链表一共有多少个结点的方法就是先遍历一遍；</li><li>这样的话要删除某个结点需要再跟着链表往后走一遍，去删除目标结点；</li><li>遍历两边，不妙不妙啊(ó﹏ò｡)</li></ol><p>思路二：</p><ol><li>使用两个指针，一快一慢；</li><li>快的比慢的快N个结点；</li><li>当快的到达尾部的时候，慢的正好指向目标结点的pre结点，只需要轻轻跳过它就Okey-dokey yo!</li><li>遍历一遍，妙哉妙哉(｡◕ˇ∀ˇ◕)</li></ol><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"># class ListNode:</span></span><br><span class="line"><span class="comment">#     def __init__(self, x):</span></span><br><span class="line"><span class="comment">#         self.val = x</span></span><br><span class="line"><span class="comment">#         self.next = None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">removeNthFromEnd</span><span class="params">(self, head, n)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type head: ListNode</span></span><br><span class="line"><span class="string">        :type n: int</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="comment"># 空链表：返回空链表</span></span><br><span class="line">        <span class="keyword">if</span> head <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">        <span class="comment"># 不用删：返回原链表</span></span><br><span class="line">        <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 快慢指针</span></span><br><span class="line">        fast = head</span><br><span class="line">        slow = head</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 快指针移动N个结点</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        fast = fast.next</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 删除第一个结点</span></span><br><span class="line">        <span class="keyword">if</span> fast <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> head.next</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 快慢指针同时后移</span></span><br><span class="line">        <span class="keyword">while</span> fast.next != <span class="keyword">None</span>:</span><br><span class="line">        fast = fast.next</span><br><span class="line">        slow = slow.next</span><br><span class="line">        <span class="comment"># 删结点</span></span><br><span class="line">        slow.next = slow.next.next</span><br><span class="line">        <span class="keyword">return</span> head</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;题目描述&quot;&gt;&lt;a href=&quot;#题目描述&quot; class=&quot;headerlink&quot; title=&quot;题目描述&quot;&gt;&lt;/a&gt;题目描述&lt;/h2&gt;&lt;img src=&quot;/2018/04/06/19.删除链表的倒数第N个节点/19.png&quot;&gt;
     
     </summary>
     

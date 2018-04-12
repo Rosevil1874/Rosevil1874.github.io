@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[25 - 每k个一组翻转链表]]></title>
+    <url>%2F2018%2F04%2F11%2F25.%E6%AF%8Fk%E4%B8%AA%E4%B8%80%E7%BB%84%E7%BF%BB%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述 审题：仔细审题说三遍啊，看到这个题目才想起来24题我的第一个蠢蠢的方法不止蠢还不符合题目要求orz你不应该改变节点的值，只有节点位置本身可能会改变 方法 首先要知道如何反转链表； 按结点数确定分组； 对确定的分组使用尾插法逆置，然后设置新的起点； 若最后没有k个结点直接跳过。12345678910111213141516171819202122232425262728293031323334353637# Definition for singly-linked list.class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ pre = tail = ListNode(-1) q = head while q is not None: # 向后查找k个结点 n = k p = q while p is not None and n &gt; 0: p = p.next n -= 1 # 若在查找到k个结点过程中遇到None，说明后面不足k个 if n &gt; 0: tail.next = q break # 将这k个结点逆置 end = q while q != p: t = q.next q.next = tail.next tail.next = q q = t tail = end return pre.next]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[24 - 交换相邻结点]]></title>
     <url>%2F2018%2F04%2F11%2F24.%E4%BA%A4%E6%8D%A2%E7%9B%B8%E9%82%BB%E7%BB%93%E7%82%B9%2F</url>
     <content type="text"><![CDATA[题目描述 解法一 将链表遍历一遍取出value值； 按相邻节点（奇偶下标）交换的顺序连接起来。虽然方法很蠢，但是过了哈哈哈哈1234567891011121314151617181920212223242526272829303132333435363738# Definition for singly-linked list.class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ lists = [] while head: lists.append(head.val) head = head.next for i in range( 0, len(lists), 2 ): if i + 1 &lt; len(lists): lists[i], lists[i+1] = lists[i+1], lists[i] h = ListNode(0) node = h for i in range(len(lists)): node.next = ListNode(lists[i]) node = node.next return h.next head = ListNode(1)node = headfor i in range(4): node.next = ListNode(i+2) node = node.nexts = Solution()r = s.swapPairs(head)while r: print(r.val) r = r.next 解法二 加个dummy结点指向头结点； 每隔一个结点原地交换一下；12345678910111213141516171819class Solution: def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ lists = [] dummy = ListNode(0) dummy.next = head prev = dummy cur = head while cur and cur.next: prev.next = cur.next cur.next = cur.next.next prev.next.next = cur prev = cur cur = cur.next return dummy.next 解法三递归~~~还不太懂123456789101112class Solution: def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head tmp = head.next head.next = swapPairs(tmp.next) tmp.next = head return tmp]]></content>
@@ -63,7 +75,7 @@
   <entry>
     <title><![CDATA['LeetCode小记']]></title>
     <url>%2F2018%2F04%2F10%2FLeetCode%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳]]></content>
+    <content type="text"><![CDATA[没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳 aaa 一些小技巧链表 双指针 尾插法 段遍历 字符串]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>

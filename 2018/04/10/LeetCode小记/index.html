@@ -85,18 +85,18 @@
 
 
 
-<meta name="description" content="没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳">
+<meta name="description" content="没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳 aaa  一些小技巧链表 双指针 尾插法 段遍历  字符串">
 <meta name="keywords" content="LeetCode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="&#39;LeetCode小记&#39;">
 <meta property="og:url" content="https://rosevil1874.github.io/2018/04/10/LeetCode小记/index.html">
 <meta property="og:site_name" content="Rosevil">
-<meta property="og:description" content="没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳">
+<meta property="og:description" content="没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳 aaa  一些小技巧链表 双指针 尾插法 段遍历  字符串">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T09:11:44.288Z">
+<meta property="og:updated_time" content="2018-04-12T01:06:25.731Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="&#39;LeetCode小记&#39;">
-<meta name="twitter:description" content="没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳">
+<meta name="twitter:description" content="没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳 aaa  一些小技巧链表 双指针 尾插法 段遍历  字符串">
 
 
 
@@ -411,8 +411,14 @@
 <li>三数之和 → <a href="https://rosevil1874.github.io/2018/04/05/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/#more">三数之和-传送门</a></li>
 <li>合并K个元素的有序链表 → <a href="https://leetcode-cn.com/problems/merge-k-sorted-lists/description/" target="_blank" rel="noopener">戳</a></li>
 <li>交换相邻结点 → <a href="https://leetcode-cn.com/problems/swap-nodes-in-pairs/description/" target="_blank" rel="noopener">戳</a></li>
+<li><a href="https://rosevil1874.github.io/2018/04/05/25.每k个一组翻转链表/#more">aaa</a></li>
 </ol>
-
+<h2 id="一些小技巧"><a href="#一些小技巧" class="headerlink" title="一些小技巧"></a>一些小技巧</h2><h3 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h3><ol>
+<li>双指针</li>
+<li>尾插法</li>
+<li>段遍历</li>
+</ol>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3>
       
     </div>
     
@@ -535,7 +541,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -621,7 +627,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#没咋弄懂的"><span class="nav-number">1.</span> <span class="nav-text">没咋弄懂的</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#没咋弄懂的"><span class="nav-number">1.</span> <span class="nav-text">没咋弄懂的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些小技巧"><span class="nav-number">2.</span> <span class="nav-text">一些小技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#链表"><span class="nav-number">2.1.</span> <span class="nav-text">链表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串"><span class="nav-number">2.2.</span> <span class="nav-text">字符串</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -667,7 +673,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共11.6k字</span>
+  <span class="post-count">博客全站共11.9k字</span>
 </div>
         
 
