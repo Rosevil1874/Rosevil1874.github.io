@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[86 - 分隔链表]]></title>
+    <url>%2F2018%2F04%2F13%2F86.%E5%88%86%E9%9A%94%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述 审题： 双指针 指针1指向小于x的最后一个结点； 指针2依次扫描，若大于x则继续向后，若小于x则将此结点移动到指针1之后，并更新指针1。还未调通1234567891011121314151617181920212223242526272829class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def partition(self, head, x): """ :type head: ListNode :type x: int :rtype: ListNode """ if head is None or head.next is None: return head dummy = ListNode(None) dummy.next = head tail = curr = dummy # tail:最后一个小于x的结点 while curr.next: if curr.next.val &lt; x: tmp = ListNode(curr.next.val) tmp.next = tail.next tail.next = tmp tail = tail.next curr.next = curr.next.next else: curr = curr.next return tail.next 双链表 分别新建两个空链表； 将小于x的结点尾插法加入链表1， 大于等于x的结点尾插法加入链表2； 将链表2接在链表1尾部，返回链表1； 尾插法是为了保证相对位置不变。 12345678910111213141516171819if head is None or head.next is None: return headleft = ListNode(None)right = ListNode(None)l_tail, r_tail = left, rightwhile head: tmp = head.next if head.val &lt; x: head.next = None l_tail.next = head l_tail = l_tail.next else: head.next = None r_tail.next = head r_tail = r_tail.next head = tmpl_tail.next = right.nextreturn left.next]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>链表</tag>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[83 - 删除排序链表中的重复元素]]></title>
+    <url>%2F2018%2F04%2F13%2F83.%E5%88%A0%E9%99%A4%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[题目描述 审题：82题是此题变种，觉得82题要考虑的多一点，先写这题再写前面那题，方法都是一样的。 双指针 指针1指向不重复的最后一个结点； 指针2依次扫描，若不重复则更新指针1，否则移除。 1234567891011121314151617181920212223242526# Definition for singly-linked list.class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def deleteDuplicates(self, head): """ :type head: ListNode :rtype: ListNode """ if head is None or head.next is None: return head tail = head # 最后一个不重复的结点 p = head.next while p is not None: if tail.val == p.val: p = p.next tail.next = tail.next.next else: p = p.next tail = tail.next return head]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>链表</tag>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[II']]></title>
+    <url>%2F2018%2F04%2F13%2F82.%20%E4%BB%8E%E5%88%86%E7%B1%BB%E5%88%97%E8%A1%A8%E4%B8%AD%E5%88%A0%E9%99%A4%E9%87%8D%E5%A4%8D%E9%A1%B9%E7%9B%AE%20II%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA[61 - 旋转链表]]></title>
+    <url>%2F2018%2F04%2F13%2F61.%E6%97%8B%E8%BD%AC%E9%93%BE%E8%A1%A8%2F</url>
+    <content type="text"><![CDATA[题目描述 审题：就是把单链表想象成一个循环链表，向右转k个位置。 双指针特殊情况： 链表长度为0或1，直接返回； k是链表长度的整数倍，直接返回 思路： fast指针比slow先走k步； 两指针同时向后遍历直到fast指针指向最后一个结点，此时slow指向倒数第k个结点； fast指向头结点，slow指向None。12345678910111213141516171819202122232425262728293031323334353637383940414243# Definition for singly-linked list.class ListNode: def __init__(self, x): self.val = x self.next = Noneclass Solution: def rotateRight(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ # 链表长度为0或1，直接返回 if head is None or head.next is None: return head # 计算链表长度 n = 1 p = head while p.next is not None: p = p.next n += 1 # k是链表长度的整数倍，直接返回 if k % n == 0: return head k %= n p = head slow = p fast = p while k &gt; 0 and fast.next is not None: fast = fast.next k -= 1 while fast.next is not None: fast = fast.next slow = slow.next newHead = slow.next fast.next = head slow.next = None return newHead 错误判断特殊情况时不能先计算链表长度再合并三种情况：12if n == 0 or n == 1 or k % n == 0: return head 否则会出现以下错误： 链表长度为0的情况必须单独判断（1的就随意了）12if head is None or head.next is None: return head]]></content>
+      <categories>
+        <category>LeetCode</category>
+      </categories>
+      <tags>
+        <tag>LeetCode</tag>
+        <tag>Python</tag>
+        <tag>链表</tag>
+        <tag>双指针</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[双指针]]></title>
+    <url>%2F2018%2F04%2F13%2F%E5%8F%8C%E6%8C%87%E9%92%88%2F</url>
+    <content type="text"><![CDATA[一、链表1. 链表的环判断是否存在环： 多个结点的后继指针重复； 使用两个移动速度不同的指针，若相遇则存在环。循环条件(fast != None) &amp;&amp; (fast.next != None) 寻找环入口： 快慢指针相遇出就是环的入口； fast指针的移动速度为slow指针的两倍。 2. 移除重复元素 指针1指向不重复的最后一个结点； 指针2依次扫描，若不重复则更新指针1，否则移除。 3. 倒数第n个结点 fast指针先走n步； fast与slow指针同时以步长 为1的速度向前走； fast走到链表尾时slow指针指向倒数第n个结点。 4. 拆分链表二、数组寻找连续子序列使用start，end两个指针记录下标 2.移除重复元素 指针1指向不重复的最后一个元素； 指针2依次扫描，若不重复则更新指针1，否则移除。 3. 寻找中点或中位数两个指针由两端向中间移动。]]></content>
+      <categories>
+        <category>算法思想</category>
+      </categories>
+      <tags>
+        <tag>链表</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Error集锦]]></title>
     <url>%2F2018%2F04%2F12%2FError%E9%9B%86%E9%94%A6%2F</url>
     <content type="text"><![CDATA[1. 缩进错误 IndentationError: unindent does not match any outer indentation level TabError: inconsistent use of tabs and spaces in indentation 这个错误就像全角半角符号一样让人抓狂，要是想整死一个程序员，就悄悄把他代码里的半角字符换成全角的，他就会开始漫长又愉快的debug~你永远不知道自己什么时候会出现缩进错误，即使你认为所有地方都使用了tab键ヽ(｀Д´)ﾉ︵ ┻━┻ ┻━┻ 解决办法 老老实实调整，把报错那行重新缩进，确定使用tab 【偶尔有效】 好好看看sublime右下角，怎么是space啊喂！ 点击这里，变成tab，文档里的空格就自动变成tab了，你会看到有些小地方闪了一下，就是那些地方的空格让你出错/微笑。]]></content>
@@ -15,14 +74,14 @@
   <entry>
     <title><![CDATA[链表]]></title>
     <url>%2F2018%2F04%2F12%2F%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[一、单链表 1. 结点类1234class ListNode: def __init__(self, n): self.val = n self.next = None 2. 单链表类实现基本操作： 初始化 判断是否为空 清空链表 取得链表长度 在链表末尾添加结点 在指定位置添加结点 删除指定位置的结点 替换指定位置结点值 查找指定值所在结点位置注：[下标均以0开始] 使用表头结点：表头结点是链表的第一个结点，除了值被忽略以外和其它结点一致，但它不被当做链表中的实际元素。头结点的存在使得空链表与非空链表处理一致，也方便对链表的开始结点的插入或删除操作。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108class SinLinkedList: def __init__(self): self.head = ListNode(None) # 是否为空 def isEmpty(self): return self.length() == 0 # 清空 def clear(self): self.head = ListNode(None) # 链表长度 def length(self): cnt = 0 curr = self.head while curr.next is not None: cnt += 1 curr = curr.next return cnt # 在链表末尾添加结点 def append(self, val): node = ListNode(val) if self.head is None: self.head = node else: p = self.head while p.next: p = p.next p.next = node # 在指定位置添加结点 def insert(self, idx, value): if self.isEmpty(): print('链表为空') p = self.head new = ListNode(value) while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: q = p.next p.next = new new.next = q # 删除指定位置的结点 def delete(self, idx): if self.isEmpty(): print('链表为空') p = self.head while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: p.next = p.next.next # 替换指定位置结点值 def replace(self, idx, newValue): if self.isEmpty(): print('链表为空') p = self.head new = ListNode(newValue) while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: q = p.next.next p.next = new new.next = q # 查找第idx个结点值 def search(self, idx): if self.isEmpty(): print('链表为空') return p = self.head while p.next and idx &gt; 0: p = p.next idx -= 1 if idx &gt; 0: print('超出链表长度') else: return p.val # 查找指定值所在结点位置 def index(self, value): if self.isEmpty(): print('链表为空') return p = self.head idx = 0 while p.next and not p.val == value: p = p.next idx += 1 return idx - 1 3. 测试12345678910111213l = SinLinkedList()l.append(12)l.append(233)l.insert(1, 666)l.replace(1, 6666)l.delete(1)print(l.index(12))print(l.search(1))h = l.head.nextwhile h: print(h.val) h = h.next 二、单向循环链表特点：从表中任意结点出发均可找到链表中其它结点，查找效率高。 判断是否存在环： 多个结点的后继指针重复； 使用两个移动速度不同的指针，若相遇则存在环。 1. 节点类-将结点属性设为私有变量12345678910111213141516class ListNode: def __init__(self, n): self.__val = n self.__next = None def __getVal__(self): return self.__val def setVal(self, newVal): self.__val = newVal def getNext(self): return self.__next def setNext(self, newNext): self.__next = newNext 2.单向循环链表类实现基本操作： 初始化 判断是否为空 清空链表 取得链表长度 在头结点后插入结点：头插法 删除指定值的结点 替换指定结点值 查找指定结点并返回下标，不存在返回-1 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455class SinCycLinkedList: def __init__(self): self.head = ListNode(None) self.head.setNext(self.head) # 判断是否为空 def isEmpty(self): return self.head.getNext() == self.head # 清空链表 def clear(self): self.head.setNext(self.head) # 取得链表长度 def length(self): cnt = 0 curr = self.head.getNext() while curr != self.head: curr = curr.getNext() cnt += 1 return cnt # 在头结点后插入结点：头插法 def unshift(self, val): new = ListNode(val) new.setNext(self.head.getNext()) self.head.setNext(new) # 删除指定值的结点 def delete(self, val): prev = self.head while prev.getNext() != self.head: curr = prev.getNext() if curr.getVal() == val: prev.setNext( curr.getNext() ) prev = prev.getNext() # 替换指定结点值 def raplce(self, val, newVal): prev = self.head while prev.getNext() != self.head: curr = prev.getNext() if curr.getVal() == val: curr.setVal(newVal) prev = prev.getNext() # 查找指定结点并返回下标，不存在返回-1 def search(self, val): idx = 0 curr = self.head.getNext() while curr != self.head: if curr.getVal() == val: return idx idx += 1 return -1 3. 测试123456789101112131415l = SinCycLinkedList()l.unshift(111)l.unshift(222)l.unshift(666)l.raplce(111, 233)l.delete(222)print('666 is in: ', l.search(666))# l.clear()sprint('length: %d' % l.length())print('\nitems:')h = l.headwhile h.getNext() != l.head: print(h.getNext().getVal()) h = h.getNext()]]></content>
+    <content type="text"><![CDATA[一、单链表 1. 结点类1234class ListNode: def __init__(self, n): self.val = n self.next = None 2. 单链表类实现基本操作： 初始化 判断是否为空 清空链表 取得链表长度 在链表末尾添加结点 在指定位置添加结点 删除指定位置的结点 替换指定位置结点值 查找指定值所在结点位置注：[下标均以0开始] 使用表头结点：表头结点是链表的第一个结点，除了值被忽略以外和其它结点一致，但它不被当做链表中的实际元素。头结点的存在使得空链表与非空链表处理一致，也方便对链表的开始结点的插入或删除操作。123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108class SinLinkedList: def __init__(self): self.head = ListNode(None) # 是否为空 def isEmpty(self): return self.length() == 0 # 清空 def clear(self): self.head = ListNode(None) # 链表长度 def length(self): cnt = 0 curr = self.head while curr.next is not None: cnt += 1 curr = curr.next return cnt # 在链表末尾添加结点 def append(self, val): node = ListNode(val) if self.head is None: self.head = node else: p = self.head while p.next: p = p.next p.next = node # 在指定位置添加结点 def insert(self, idx, value): if self.isEmpty(): print('链表为空') p = self.head new = ListNode(value) while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: q = p.next p.next = new new.next = q # 删除指定位置的结点 def delete(self, idx): if self.isEmpty(): print('链表为空') p = self.head while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: p.next = p.next.next # 替换指定位置结点值 def replace(self, idx, newValue): if self.isEmpty(): print('链表为空') p = self.head new = ListNode(newValue) while p and idx &gt; 0: p = p.next idx -= 1 # 说明没有那么多结点 if idx &gt; 0: print('超出链表长度') else: q = p.next.next p.next = new new.next = q # 查找第idx个结点值 def search(self, idx): if self.isEmpty(): print('链表为空') return p = self.head while p.next and idx &gt; 0: p = p.next idx -= 1 if idx &gt; 0: print('超出链表长度') else: return p.val # 查找指定值所在结点位置 def index(self, value): if self.isEmpty(): print('链表为空') return p = self.head idx = 0 while p.next and not p.val == value: p = p.next idx += 1 return idx - 1 3. 测试12345678910111213l = SinLinkedList()l.append(12)l.append(233)l.insert(1, 666)l.replace(1, 6666)l.delete(1)print(l.index(12))print(l.search(1))h = l.head.nextwhile h: print(h.val) h = h.next 二、单向循环链表特点：从表中任意结点出发均可找到链表中其它结点，查找效率高。 1. 节点类-将结点属性设为私有变量12345678910111213141516class ListNode: def __init__(self, n): self.__val = n self.__next = None def __getVal__(self): return self.__val def setVal(self, newVal): self.__val = newVal def getNext(self): return self.__next def setNext(self, newNext): self.__next = newNext 2.单向循环链表类实现基本操作： 初始化 判断是否为空 清空链表 取得链表长度 在头结点后插入结点：头插法 删除指定值的结点 替换指定结点值 查找指定结点并返回下标，不存在返回-1 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455class SinCycLinkedList: def __init__(self): self.head = ListNode(None) self.head.setNext(self.head) # 判断是否为空 def isEmpty(self): return self.head.getNext() == self.head # 清空链表 def clear(self): self.head.setNext(self.head) # 取得链表长度 def length(self): cnt = 0 curr = self.head.getNext() while curr != self.head: curr = curr.getNext() cnt += 1 return cnt # 在头结点后插入结点：头插法 def unshift(self, val): new = ListNode(val) new.setNext(self.head.getNext()) self.head.setNext(new) # 删除指定值的结点 def delete(self, val): prev = self.head while prev.getNext() != self.head: curr = prev.getNext() if curr.getVal() == val: prev.setNext( curr.getNext() ) prev = prev.getNext() # 替换指定结点值 def raplce(self, val, newVal): prev = self.head while prev.getNext() != self.head: curr = prev.getNext() if curr.getVal() == val: curr.setVal(newVal) prev = prev.getNext() # 查找指定结点并返回下标，不存在返回-1 def search(self, val): idx = 0 curr = self.head.getNext() while curr != self.head: if curr.getVal() == val: return idx idx += 1 return -1 3. 测试123456789101112131415l = SinCycLinkedList()l.unshift(111)l.unshift(222)l.unshift(666)l.raplce(111, 233)l.delete(222)print('666 is in: ', l.search(666))# l.clear()sprint('length: %d' % l.length())print('\nitems:')h = l.headwhile h.getNext() != l.head: print(h.getNext().getVal()) h = h.getNext() 三、双指针链表的环判断是否存在环： 多个结点的后继指针重复； 使用两个移动速度不同的指针，若相遇则存在环。循环条件(fast != None) &amp;&amp; (fast.next != None) 寻找环入口： 快慢指针相遇出就是环的入口； fast指针的移动速度为slow指针的两倍。 寻找连续子序列 使用start，end两个指针记录下标 移除重复元素倒数第n个结点拆分链表]]></content>
       <categories>
-        <category>数据结构+算法</category>
+        <category>数据结构</category>
       </categories>
       <tags>
         <tag>Python</tag>
-        <tag>数据结构</tag>
         <tag>链表</tag>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -100,7 +159,7 @@
   <entry>
     <title><![CDATA['LeetCode小记']]></title>
     <url>%2F2018%2F04%2F10%2FLeetCode%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳 aaa 一些小技巧链表 双指针 尾插法 段遍历 字符串]]></content>
+    <content type="text"><![CDATA[没咋弄懂的 两个排序数组的中位数 → 戳 最长回文子串 → 戳 正则表达式匹配 → 戳 整数转罗马数字 → 戳 罗马数字转整数 → 戳 三数之和 → 三数之和-传送门 合并K个元素的有序链表 → 戳 交换相邻结点 → 戳 aaa86.分隔链表 一些小技巧链表 双指针 头/尾插法 段遍历 字符串双指针-待填坑]]></content>
       <categories>
         <category>LeetCode</category>
       </categories>
